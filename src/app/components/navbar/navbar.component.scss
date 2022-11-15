@@ -1,0 +1,32 @@
+.navbar {
+  background-color: #ffffff;
+  padding: 40px 40px;
+  border-bottom: solid 10px #009660;
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+  .tittle{
+    color: rgb(27, 27, 27);
+  }
+  .logo {
+    width: 50px;
+    padding-right: 16px;
+    cursor: pointer;
+    
+  }
+  .regbutton {
+    background-color: #1b1b1b;
+    padding: 4px 16px;
+    border-radius: 24px;
+    color: white;
+    margin-left: 16px;
+  }
+  .logbutton {
+    background-color: #ffffff;
+    padding: 4px 16px;
+    border-radius: 24px;
+    color: rgb(22, 22, 22);
+    margin-left: 16px;
+  }
+}

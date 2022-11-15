@@ -1,0 +1,47 @@
+.signin {
+    align-items: center;
+    display: flex;
+  
+    .container {
+      margin: auto;
+      padding-top: 300px;
+      width: 600px;
+      .header {
+          text-align: left;
+        }
+        input {
+          width: 100%;
+          border: 0;
+          border-bottom: 1px solid #009660;
+          outline: 0;
+          font-size: 1.3rem;
+          color: rgb(29, 29, 29);
+          padding: 2px;
+          background: transparent;
+          font-size: 15px;
+          margin-bottom: 8px;
+        }
+        ::placeholder {
+          color: rgb(0, 0, 0);
+        }
+        .button {
+          margin-top: 16px;
+          margin-bottom: 16px;
+          background-color: #009660;
+          color: white;
+        }
+        .tittle {
+          font-size: 48px;
+          padding-bottom: 24px;
+        }
+        a{
+          color: #009660;
+  
+        }
+    }
+    
+    
+    
+   
+    
+  }
