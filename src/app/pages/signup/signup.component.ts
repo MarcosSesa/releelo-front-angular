@@ -9,21 +9,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
-  public formGroup!: FormGroup;
+  public formgroup!: FormGroup;
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [Validators.required]);
 
   constructor(private formBuilder: FormBuilder, private supabaseservice: SupabaseService) {}
 
   ngOnInit(): void {
     this.buildForm();
   }
-  
-  signUp(){
-    console.log();
+  onSubmit() {
+    console.warn(this.formgroup.value);
   }
+
   private buildForm() {
-    this.formGroup = this.formBuilder.group({
-      email: '',
-      password: '',
+    this.formgroup = this.formBuilder.group({
+      email: this.email,
+      password: this.password,
     });
   }
 }

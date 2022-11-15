@@ -1,18 +1,24 @@
 <app-navbar></app-navbar>
 <div class="signup">
   <div class="container">
-    <h1 class="tittle" mat-dialog-title>Registrarse</h1>
-    <div mat-dialog-content>
-      <form [formGroup]="formGroup">
-        <label for="email">Email</label>
-        <input name="email" formControlName="email" type="text" />
-        <label for="password">Password</label>
-        <input name="password" formControlName="password" type="password" />
+    <h1 class="tittle">Registrarse</h1>
+      <form [formGroup]="formgroup" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="email">Email *</label>
+          <input id="email" type="text" formControlName="email"/>
+          <mat-error *ngIf="email.errors?.['email'] && (email.dirty || email.touched)">Debe introducir un email valido</mat-error>
+          <mat-error *ngIf="email.errors?.['required'] && (email.dirty || email.touched)">Este campo es obligatorio</mat-error>
+        </div>
+        <div class="password">
+          <label for="password">Password *</label>
+          <input name="password" formControlName="password" type="password" />
+          <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">Este campo es obligatorio</mat-error>
+        </div>
+        <div class="but-container">
+          <button mat-button class="button" type="submit" [disabled]="!formgroup.valid" >Registrarse</button>
+          <p>Ya tienes una cuenta? <a routerLink="/signin">Iniciar sesión</a></p>
+        </div>
       </form>
-    </div>
-    <div class="but-container">
-      <button mat-button class="button" (click)="signUp()">Registrarse</button>
-      <p>Ya tienes una cuenta? <a routerLink="/signin">Iniciar sesión</a></p>
-    </div>
+    
   </div>
 </div>
