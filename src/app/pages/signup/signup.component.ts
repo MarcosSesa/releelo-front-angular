@@ -2,6 +2,7 @@ import { SupabaseService } from './../../services/supabase.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -13,13 +14,18 @@ export class SignupComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required]);
 
-  constructor(private formBuilder: FormBuilder, private supabaseservice: SupabaseService) {}
+  constructor(private formBuilder: FormBuilder, private supabaseservice: SupabaseService,private router: Router,private snackBar: MatSnackBar,
+    ) {}
 
   ngOnInit(): void {
     this.buildForm();
   }
   onSubmit() {
-    console.warn(this.formgroup.value);
+    this.supabaseservice.signUp(this.formgroup.value.email,this.formgroup.value.password).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/');
+       }
+    })
   }
 
   private buildForm() {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createClient } from "@supabase/supabase-js";
-import { from } from 'rxjs';
+import { from, map, Observable } from 'rxjs';
+import { Ibook } from '../interfaces/ibook';
 
 
 @Injectable({
@@ -19,12 +20,24 @@ export class SupabaseService {
       password: password
     }))
   }
-
   signIn(email:string, password:string) {
-    return from(this.supabase.auth.signUp({
+    return from(this.supabase.auth.signInWithPassword({
       email: email,
       password: password
     }))
   }
-  
+  signOut(){
+    return from(this.supabase.auth.signOut())
+  }
+  getSession() {
+    return from(this.supabase.auth.getSession())
+  }
+  getBooksByFilter(fromindex: number, toindex: number, filtertext: string): Observable<Ibook[]> {
+    console.log(filtertext + "," + fromindex + "," + toindex);
+    
+    return from(this.supabase.from('Libro').select('*').ilike('titulo', `%${filtertext}%`).range(fromindex,toindex)).pipe(map( (res) => res.data as Ibook[])) 
+  }
+  getBooks(fromindex: number, toindex: number): Observable<Ibook[]> {
+    return from(this.supabase.from('Libro').select('*').range(fromindex,toindex)).pipe(map( (res) => res.data as Ibook[]))
+  }
 }

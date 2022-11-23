@@ -5,7 +5,7 @@
       <form [formGroup]="formgroup" (ngSubmit)="onSubmit()">
         <div>
           <label for="email">Email *</label>
-          <input id="email" type="text" formControlName="email"/>
+          <input  id="email" type="text" formControlName="email"/>
           <mat-error *ngIf="email.errors?.['email'] && (email.dirty || email.touched)">Debe introducir un email valido</mat-error>
           <mat-error *ngIf="email.errors?.['required'] && (email.dirty || email.touched)">Este campo es obligatorio</mat-error>
         </div>

@@ -4,7 +4,7 @@
   
     .container {
       margin: auto;
-      padding-top: 300px;
+      padding-top: 200px;
       width: 600px;
       .header {
           text-align: left;
@@ -21,6 +21,9 @@
           font-size: 15px;
           margin-bottom: 8px;
         }
+        .password{
+          margin-top: 25px;
+        }
         ::placeholder {
           color: rgb(0, 0, 0);
         }
@@ -29,6 +32,10 @@
           margin-bottom: 16px;
           background-color: #009660;
           color: white;
+          &:disabled{
+            background-color: rgb(196, 196, 196);
+            color: rgb(68, 68, 68);
+          }
         }
         .tittle {
           font-size: 48px;
