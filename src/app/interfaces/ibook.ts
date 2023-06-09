@@ -1,8 +1,11 @@
 export interface Ibook {
-    idlibro: number,
-    titulo: string,
-    autor: string,
-    descripcion: string,
-    idcategoria: number,
-    iduser: number
+  bookId: number;
+  userId: number;
+  categoryId: number;
+  title: string;
+  autor: string;
+  description: string;
+  year: number;
+  createAt: string;
+  updatedAt: string;
 }
