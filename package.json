@@ -20,11 +20,18 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
-    "@supabase/supabase-js": "^2.0.6",
-    "ngx-infinite-scroll": "^14.0.1",
     "rxjs": "~7.5.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+
+    "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
+    "@types/ace": "^0.0.48",
+    "@types/luxon": "^3.2.0",
+    "ace-builds": "^1.22.0",
+    "luxon": "^3.3.0",
+    "socket.io-client": "^4.6.1",
+    "sweetalert2": "^11.7.3",
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.7",
