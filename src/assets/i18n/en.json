@@ -1,0 +1,9 @@
+{
+  "COMMON": {
+    "TRY": "Hello world"
+  },
+  "PAGES": {
+    "HOME": {
+    }
+  }
+}

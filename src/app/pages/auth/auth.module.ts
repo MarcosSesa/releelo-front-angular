@@ -7,12 +7,13 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
 import {TranslateModule} from "@ngx-translate/core";
+import {AuthComponent} from "./auth.component";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
-  declarations: [],
+  declarations: [AuthComponent],
   imports: [
-    CommonModule,
     CommonModule,
     AuthRoutingModule,
     MatFormFieldModule,
@@ -21,7 +22,7 @@ import {TranslateModule} from "@ngx-translate/core";
     MatButtonModule,
     MatDialogModule,
     TranslateModule,
-    
+    MatIconModule,
   ]
 })
 export class AuthModule {

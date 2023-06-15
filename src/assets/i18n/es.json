@@ -1,0 +1,15 @@
+{
+  "COMMON": {
+    "TRY": "Hola mundo"
+  },
+  "PAGES": {
+    "HOME": {
+    },
+    "AUTH": {
+      "REGISTER": "Registrarse",
+      "DESCRIPTION1": "Registrate o Inicia sesion y comienza a intercambiar los libros que ya no quieres",
+      "LOGIN": "Iniciar sesión",
+      "DESCRIPTION2": "Inicia sesion o registrate y comienza a intercambiar los libros que ya no quieres"
+    }
+  }
+}

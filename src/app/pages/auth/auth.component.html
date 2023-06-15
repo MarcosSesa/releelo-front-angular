@@ -1,1 +1,85 @@
-<p>auth works!</p>
+<div class="auth">
+  <div class="auth__column1">
+    <div class="auth__column1__description">
+      <span
+        class="auth__column1__description__title">{{(isNewUser ? 'PAGES.AUTH.REGISTER' : 'PAGES.AUTH.LOGIN') | translate}}</span>
+      <div>
+        <span
+          class="auth__column1__description__description">{{(isNewUser ? 'PAGES.AUTH.DESCRIPTION1' : 'PAGES.AUTH.DESCRIPTION2') | translate}}</span>
+      </div>
+    </div>
+    <div class="auth__column1__image-selector"
+         *ngIf="isNewUser"
+         id="myImage"
+         style="background-image: url('assets/images/auth_resource_2.svg');"
+         (click)="openImageSelector()">
+      <input type="file" id="imageInput" style="display: none" (change)="onFileSelected($event)">
+    </div>
+    <div class="auth__column1__description__description" *ngIf="isNewUser">
+      <span>Foto de perfil</span>
+    </div>
+    <form [formGroup]="authForm" class="auth__column1__form">
+      <div>
+        <!-- USERNAME ------------------------------------------------------------------------------------------->
+        <mat-form-field class="auth__column1__form__left" *ngIf="isNewUser">
+          <mat-label>Usuario</mat-label>
+          <input matInput type="text" formControlName="name">
+        </mat-form-field>
+        <!-- EMAIL ------------------------------------------------------------------------------------------->
+        <mat-form-field [ngClass]="isNewUser ? 'auth__column1__form__right': 'auth__column1__form__login'">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email">
+        </mat-form-field>
+        <!-- PASSWORD ---------------------------------------------------------------------------------------->
+        <mat-form-field [ngClass]="isNewUser ? 'auth__column1__form__left' : 'auth__column1__form__login' ">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <!-- REPEAT PASSWORD --------------------------------------------------------------------------------->
+        <mat-form-field class="auth__column1__form__right" *ngIf="isNewUser">
+          <mat-label>Repetir contraseña</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="repeatPassword">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <!-- CITY ------------------------------------------------------------------------------------------->
+        <mat-form-field class="auth__column1__form__left" *ngIf="isNewUser">
+          <mat-label>Ciudad</mat-label>
+          <input matInput type="text" formControlName="city">
+        </mat-form-field>
+        <!-- AGE ------------------------------------------------------------------------------------------->
+        <mat-form-field class="auth__column1__form__right" *ngIf="isNewUser">
+          <mat-label>Edad</mat-label>
+          <input matInput type="number" formControlName="age">
+        </mat-form-field>
+      </div>
+    </form>
+    <div class="auth__column1__buttons">
+      <button
+        mat-raised-button
+        (click)="handleAuth()"
+        class="auth__column1__buttons__btn"
+        [disabled]="authForm.invalid">
+        {{isNewUser ? 'Registrarse' : 'Iniciar sesión' }}
+      </button>
+      <div class="auth__column1__supportInfo">
+        <span *ngIf="!isNewUser">Aun no tienes una cuenta ?  <a
+          [routerLink]="'/auth/register'">Registrate</a></span>
+      </div>
+      <div class="auth__column1__supportInfo">
+        <span *ngIf="isNewUser">Ya tienes una cuenta ? <a
+          [routerLink]="'/auth/login'">Iniciar sesion </a></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="auth__column2">
+    <img src="assets/images/auth_resource_1.svg" alt="">
+  </div>
+</div>

@@ -32,24 +32,27 @@ export class AuthService {
       email,
       password
     }).pipe(
-      tap((token)=>{
+      tap((token) => {
         this.setToken(token.token)
         this.#isLogged.next(true)
       })
     );
   }
+
   logout() {
     this.setToken(null);
     this.#isLogged.next(false);
   }
 
-  register(name: string, email: string, password: string) {
+  register(name: string, email: string, password: string, ciudad: string, edad: number) {
     return this.http.post<string>(
       `${environment.services.url}/auth/register`,
       {
         name,
         email,
         password,
+        ciudad,
+        edad
       }
     );
   }
