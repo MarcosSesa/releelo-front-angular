@@ -15,9 +15,6 @@
          (click)="openImageSelector()">
       <input type="file" id="imageInput" style="display: none" (change)="onFileSelected($event)">
     </div>
-    <div class="auth__column1__description__description" *ngIf="isNewUser">
-      <span>Foto de perfil</span>
-    </div>
     <form [formGroup]="authForm" class="auth__column1__form">
       <div>
         <!-- USERNAME ------------------------------------------------------------------------------------------->

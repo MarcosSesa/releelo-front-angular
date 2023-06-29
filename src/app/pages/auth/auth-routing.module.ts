@@ -14,6 +14,11 @@ const routes: Routes = [
     component: AuthComponent
   },
   {
+    path: '',
+    data: {isNewUser: false},
+    component: AuthComponent
+  },
+  {
     path: '**',
     loadChildren: () => import('../not-found/not-found.module').then((m) => m.NotFoundModule)
   }

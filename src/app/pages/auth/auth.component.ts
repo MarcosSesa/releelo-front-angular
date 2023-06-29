@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {repeatPasswordValidator} from "../../validators/repeat-password.validator";
 import {AuthService} from "../../services/auth.service";
+import {iif} from "rxjs";
+import {translate} from "@ngneat/transloco";
 
 
 @Component({
@@ -19,7 +21,7 @@ export class AuthComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   })
 
-  constructor(private activateRoute: ActivatedRoute, private authService: AuthService) {
+  constructor(private activateRoute: ActivatedRoute, private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -45,7 +47,6 @@ export class AuthComponent implements OnInit {
           imgElement.style.backgroundImage = `url(${urlImage})`;
         }
       };
-
       lector.readAsDataURL(image);
     }
   }
@@ -65,25 +66,30 @@ export class AuthComponent implements OnInit {
   }
 
   handleAuth() {
-    console.log(this.authForm.valid)
-    console.log('isNewUser', this.isNewUser)
     if (this.authForm.invalid) return;
-    if (this.isNewUser) {
+    console.log(this.isNewUser)
+    iif(() => this.isNewUser,
       this.authService.register(
         this.authForm.controls['name']?.value ?? '',
         this.authForm.controls['email'].value,
         this.authForm.controls['password']?.value,
-        this.authForm.controls['city'].value,
-        this.authForm.controls['age'].value
-      )
-    } else {
+        this.authForm.controls['city']?.value,
+        this.authForm.controls['age']?.value
+      ),
       this.authService.login(
         this.authForm.controls['email'].value,
         this.authForm.controls['password'].value
       )
-    }
+    ).subscribe(() => {
+      this.authService.isLogged.subscribe((res) => {
+        if (!res) return
+        this.router.navigate(['/'])
+      })
+    })
+
 
   }
 
   protected readonly event = event;
+  protected readonly translate = translate;
 }
