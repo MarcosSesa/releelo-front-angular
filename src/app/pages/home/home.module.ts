@@ -8,11 +8,13 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
 import {TranslateModule} from "@ngx-translate/core";
 import {MatIconModule} from "@angular/material/icon";
+import {HomeRoutingModule} from "./home-routing.module";
 
 
 @NgModule({
   declarations: [HomeComponent],
   imports: [
+    HomeRoutingModule,
     CommonModule,
     MatFormFieldModule,
     ReactiveFormsModule,

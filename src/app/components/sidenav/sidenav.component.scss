@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
+.sidenav{
+  background-color: var(--main-color);
+  transition: all .5s ease;
+  width: 5rem;
+  height: 100vh;
+  box-shadow: 0.063rem 0 1.25rem 0 #8990a3;
+  &__user{
+    height: 20%;
+    display: flex;
+    align-items: start;
+    padding: 1rem;
+    width: 100%;
+    &__image{
+      border-radius: 100%;
+      width: 3rem;
+      height: 3rem;
+      min-width: 3rem;
+      cursor: pointer;
+      border: none;
+    }
+    &__name{
+      margin-left: 1.5rem;
+      font-size: 24px;
+      font-weight: 700;
+      color: white;
+    }
+    &__close{
+      background-color: transparent;
+      margin-left: auto;
+      cursor: pointer;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      border: none;
+      mat-icon{
+        color: white;
+        font-size: 24px;
+      }
+
+    }
+  }
+}
+
+.sidenav-collapsed{
+  width: 15rem;
+}
+.sidenav__nav{
+  height: 60%;
+  list-style: none;
+  padding: 1rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  &__item{
+    width: 100%;
+    text-align: start;
+    padding-bottom: 30px;
+    &__link{
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      height: 3rem;
+      color: #f3f3f3;
+      text-decoration: none;
+      transition: color .3s ease;
+      border-radius: 0.6rem;
+      &:hover{
+       background-color: white;
+        color: #263238;
+      }
+      mat-icon{
+        display: flex;
+        align-items: center;
+        font-size: 32px;
+        width: 2rem;
+        height: 3rem;
+        min-width: 2rem;
+        margin: 0 0.5rem;
+        text-align: center;
+      }
+      &__text{
+        margin-left: 1.5rem;
+        font-size: 1.3rem;
+        font-family: 'Karla', sans-serif;
+      }
+    }
+
+  }
+
+}
