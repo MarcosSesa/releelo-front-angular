@@ -1,6 +1,7 @@
-import {Component,  OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
-import {Observable} from "rxjs";
+import {UserInterface} from "../../interfaces/user.interface";
+
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -9,11 +10,13 @@ import {Observable} from "rxjs";
 export class SidenavComponent implements OnInit {
   collapsed: boolean = false;
   isLoged: boolean = false
+  user!: UserInterface | null;
 
   constructor(private authSvc: AuthService) { }
 
   ngOnInit(): void {
     this.isloged();
+    this.getUSer()
   }
 
   toggleCollapse(): void {
@@ -25,6 +28,13 @@ export class SidenavComponent implements OnInit {
       this.isLoged =  res
     })
     return false
+  }
+
+  private getUSer(): UserInterface | null{
+    this.authSvc.user.subscribe((res) =>{
+      this.user =  res
+    })
+    return null
   }
 
   logout(): void{

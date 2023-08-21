@@ -36,6 +36,7 @@
         font-family: var(--main-font);
         font-size: 56px;
         font-weight: 700;
+        color: var(--main-color);
 
       }
 
@@ -75,12 +76,12 @@
 
 
       &__btn {
-
         font-family: var(--main-font);
         font-size: 20px;
         font-weight: 500;
         background-color: var(--main-color);
         border: none;
+        color: white;
       }
     }
 

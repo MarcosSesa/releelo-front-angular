@@ -5,6 +5,8 @@ import {repeatPasswordValidator} from "../../validators/repeat-password.validato
 import {AuthService} from "../../services/auth.service";
 import {iif} from "rxjs";
 import {translate} from "@ngneat/transloco";
+import {openToast} from "../../utils/toast.utils";
+import {LoginResponse} from "../../interfaces/user.interface";
 
 
 @Component({
@@ -13,12 +15,12 @@ import {translate} from "@ngneat/transloco";
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  selectedImage: File | null = null;
   hide: boolean = true
   isNewUser!: boolean;
+  //Auth form initialization
   authForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required, Validators.minLength(8)])
   })
 
   constructor(private activateRoute: ActivatedRoute, private authService: AuthService, private router: Router) {
@@ -31,7 +33,8 @@ export class AuthComponent implements OnInit {
     if (this.isNewUser) this.addRegisterControls()
   }
 
-  openImageSelector(): void {
+  //AÑADIR A LA PANTALLA DE AJUSTES DE USUARIO
+ /* openImageSelector(): void {
     document.getElementById('imageInput')?.click();
   }
 
@@ -49,7 +52,7 @@ export class AuthComponent implements OnInit {
       };
       lector.readAsDataURL(image);
     }
-  }
+  }*/
 
 
   private addRegisterControls() {
@@ -67,29 +70,39 @@ export class AuthComponent implements OnInit {
 
   handleAuth() {
     if (this.authForm.invalid) return;
-    console.log(this.isNewUser)
     iif(() => this.isNewUser,
-      this.authService.register(
-        this.authForm.controls['name']?.value ?? '',
-        this.authForm.controls['email'].value,
-        this.authForm.controls['password']?.value,
-        this.authForm.controls['city']?.value,
-        this.authForm.controls['age']?.value
-      ),
-      this.authService.login(
-        this.authForm.controls['email'].value,
-        this.authForm.controls['password'].value
-      )
-    ).subscribe(() => {
-      this.authService.isLogged.subscribe((res) => {
-        if (!res) return
-        this.router.navigate(['/'])
-      })
+        this.authService.register(
+          this.authForm.controls['name']?.value ?? '',
+          this.authForm.controls['email'].value,
+          this.authForm.controls['password']?.value,
+          this.authForm.controls['city']?.value,
+          this.authForm.controls['age']?.value
+        ),
+        this.authService.login(
+          this.authForm.controls['email'].value,
+          this.authForm.controls['password'].value
+        )
+
+    ).subscribe({
+      next: (res: string | LoginResponse) => {
+        if (!this.isNewUser) {
+          openToast("Bienvenido", "success")
+          this.router.navigate(['/home'])
+          return;
+        }
+        openToast("Te has registrado correctamente, prueba a iniciar sesion" , "success", 4000)
+        this.router.navigate(['/auth/login']);
+
+
+      },
+      error: (err) => {
+        openToast('Credenciales incorrectas','error')
+      }
     })
 
 
-  }
 
+  }
   protected readonly event = event;
   protected readonly translate = translate;
 }

@@ -8,13 +8,13 @@
           class="auth__column1__description__description">{{(isNewUser ? 'PAGES.AUTH.DESCRIPTION1' : 'PAGES.AUTH.DESCRIPTION2') | translate}}</span>
       </div>
     </div>
-    <div class="auth__column1__image-selector"
+    <!--<div class="auth__column1__image-selector"
          *ngIf="isNewUser"
          id="myImage"
          style="background-image: url('assets/images/auth_resource_2.svg');"
          (click)="openImageSelector()">
       <input type="file" id="imageInput" style="display: none" (change)="onFileSelected($event)">
-    </div>
+    </div>-->
     <form [formGroup]="authForm" class="auth__column1__form">
       <div>
         <!-- USERNAME ------------------------------------------------------------------------------------------->

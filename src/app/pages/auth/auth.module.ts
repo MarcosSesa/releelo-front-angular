@@ -23,6 +23,7 @@ import {MatIconModule} from "@angular/material/icon";
     MatDialogModule,
     TranslateModule,
     MatIconModule,
+
   ]
 })
 export class AuthModule {
