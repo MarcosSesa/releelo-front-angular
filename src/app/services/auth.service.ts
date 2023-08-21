@@ -48,13 +48,13 @@ export class AuthService {
     return this.http.post<string>(
       `${environment.services.url}/auth/register`,
       {
-        name,
-        email,
-        password,
-        ciudad,
-        edad
+        username: name,
+        email: email,
+        password: password,
+        city: ciudad,
+        age: edad,
       }
-    );
+    )
   }
 
 }

@@ -1,54 +1,65 @@
 <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''" >
-  <div class="sidenav__user">
+
+  <!-- User profile -->
+  <div class="sidenav__user" *ngIf="isLoged">
     <button class="sidenav__user__image" (click)="toggleCollapse()">M</button>
     <div class="sidenav__user__name" *ngIf="collapsed">Marcos</div>
-    <button class="sidenav__user__close" (click)="closeSidenav()" *ngIf="collapsed">
+    <button class="sidenav__user__close" (click)="toggleCollapse()" *ngIf="collapsed">
       <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
     </button>
   </div>
+
+  <!-- Icon menu / menu actions -->
   <ul class="sidenav__nav">
-    <li class="sidenav__nav__item">
+    <li class="sidenav__nav__item" *ngIf="isLoged">
       <a href="" class="sidenav__nav__item__link" [routerLink]="'home'">
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add_circle"></mat-icon>
         <span class="sidenav__nav__item__link__text" *ngIf="collapsed">Publicar</span>
       </a>
     </li>
     <li class="sidenav__nav__item">
-      <a href="" class="sidenav__nav__item__link" [routerLink]="'home'">
+      <a href="" class="sidenav__nav__item__link" [routerLink]="'home'" >
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
         <span class="sidenav__nav__item__link__text" *ngIf="collapsed">Home</span>
       </a>
     </li>
-    <li class="sidenav__nav__item">
-      <a href="" class="sidenav__nav__item__link" [routerLink]="'home'">
+    <li class="sidenav__nav__item"*ngIf="isLoged">
+      <a href="" class="sidenav__nav__item__link" [routerLink]="'home'" >
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="favorite"></mat-icon>
         <span class="sidenav__nav__item__link__text" *ngIf="collapsed">Favoritos</span>
       </a>
     </li>
-    <li class="sidenav__nav__item">
+    <li class="sidenav__nav__item" *ngIf="isLoged">
       <a href="" class="sidenav__nav__item__link" [routerLink]="'home'">
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="chat"></mat-icon>
         <span class="sidenav__nav__item__link__text" *ngIf="collapsed">Chat</span>
       </a>
     </li>
-    <li class="sidenav__nav__item">
-      <a href="" class="sidenav__nav__item__link" [routerLink]="'home'">
+    <li class="sidenav__nav__item" *ngIf="isLoged">
+      <a href="" class="sidenav__nav__item__link" [routerLink]="'home'" >
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="collections_bookmark"></mat-icon>
         <span class="sidenav__nav__item__link__text" *ngIf="collapsed">Biblioteca</span>
       </a>
     </li>
-    <li class="sidenav__nav__item">
-      <a href="" class="sidenav__nav__item__link" [routerLink]="'home'">
+    <li class="sidenav__nav__item" *ngIf="isLoged">
+      <a href="" class="sidenav__nav__item__link" [routerLink]="'home'" >
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="settings"></mat-icon>
         <span class="sidenav__nav__item__link__text" *ngIf="collapsed">Ajustes</span>
       </a>
     </li>
-    <li class="sidenav__nav__item">
-      <a href="" class="sidenav__nav__item__link" [routerLink]="'home'">
+    <li class="sidenav__nav__item" *ngIf="isLoged">
+      <a href="" class="sidenav__nav__item__link" [routerLink]="'home'" (click)="logout()" >
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="power_settings_new"></mat-icon>
-        <span class="sidenav__nav__item__link__text" *ngIf="collapsed">Cerrar Sesión</span>
+        <span class="sidenav__nav__item__link__text" *ngIf="collapsed" >Salir</span>
+      </a>
+    </li>
+    <li class="sidenav__nav__item" *ngIf="!isLoged">
+      <a href="" class="sidenav__nav__item__link" [routerLink]="'auth/login'" >
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="login"></mat-icon>
+        <span class="sidenav__nav__item__link__text" *ngIf="collapsed" >Entrar</span>
       </a>
     </li>
   </ul>
+
 </div>
 

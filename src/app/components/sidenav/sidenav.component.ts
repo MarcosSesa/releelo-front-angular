@@ -1,4 +1,6 @@
 import {Component,  OnInit} from '@angular/core';
+import {AuthService} from "../../services/auth.service";
+import {Observable} from "rxjs";
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -6,17 +8,26 @@ import {Component,  OnInit} from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
   collapsed: boolean = false;
+  isLoged: boolean = false
 
-  constructor() { }
+  constructor(private authSvc: AuthService) { }
 
   ngOnInit(): void {
+    this.isloged();
   }
 
-  toggleCollapse() {
+  toggleCollapse(): void {
     this.collapsed = !this.collapsed
   }
 
-  closeSidenav() {
-    this.collapsed = false
+  private isloged(): boolean{
+    this.authSvc.isLogged.subscribe((res) =>{
+      this.isLoged =  res
+    })
+    return false
+  }
+
+  logout(): void{
+    this.authSvc.logout()
   }
 }

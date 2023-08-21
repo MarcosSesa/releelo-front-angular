@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
 
 .sidenav{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: var(--main-color);
   transition: all .5s ease;
   width: 5rem;
@@ -47,14 +50,16 @@
   width: 15rem;
 }
 .sidenav__nav{
-  height: 60%;
+
   list-style: none;
   padding: 1rem;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
+  flex-grow: 1;
   &__item{
     width: 100%;
     text-align: start;

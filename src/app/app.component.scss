@@ -1,8 +1,8 @@
 .app__row{
 display: flex;
+  align-items: center;
   &__body{
     width: 100%;
-    padding: 50px;
   }
 }
 
